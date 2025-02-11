@@ -1,0 +1,42 @@
+{
+  "name": "@yasanchezz/eslint-plugin-vue-data-testid",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "lint": "eslint -c eslint.config.js",
+    "build": "tsc -p tsconfig.json",
+    "build-prod": "pnpm lint && pnpm build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "eslint": "^9.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "@typescript-eslint/utils": "^8.24.0",
+    "jiti": "^2.4.2",
+    "typescript": "^5.7.3",
+    "vue-eslint-parser": "^9.4.3"
+  },
+  "dependencies": {
+    "globals": "^15.14.0",
+    "neostandard": "^0.12.1"
+  },
+  "engines": {
+    "node": ">= 22.0.0",
+    "pnpm": ">= 10"
+  }
+}
