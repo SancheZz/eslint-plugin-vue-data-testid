@@ -12,18 +12,30 @@ Plugin requires `eslint@9`.
 
 ### describe dependency inside eslint config
 
-```javascript
+```typescript
 import vueDataTestid from '@yasanchezz/eslint-plugin-vue-data-testid'
 
+// options type
+type Options = {
+  nodeName: string;
+  filepath: string;
+  filename: string;
+  isRoot: boolean;
+  className?: string;
+  classNames?: string[];
+}
+
 // e.g. convert filename and BEM class into data-testid
-function buildDataTestid(options) {
+function buildDataTestid(options: Options) {
   const filename = options.filename.replace('.vue', '')
-  const [first, second] = [options.className.at(0), options.className.slice(1)]
+  const [first, second] = [options.className?.at(0), options.className?.slice(1)]
 
   // convert BEM class name to data-testid
-  const classId = first?.toUpperCase() + second
-    .replace(/-[a-z]/g, (input) => input.at(1).toUpperCase())
-    .replace(/(?<=__)[a-z]/g, (input) => input.toUpperCase())
+  const classId = first && second
+    ? first.toUpperCase() + second
+      .replace(/-[a-z]/g, (input) => input.at(1).toUpperCase())
+      .replace(/(?<=__)[a-z]/g, (input) => input.toUpperCase())
+    : undefined
 
   return classId
     ? `${filename}__${classId}`
@@ -31,8 +43,8 @@ function buildDataTestid(options) {
 }
 
 // e.g. check node to ignore it
-function ignoreNode(nodeName) {
-  return /([A-Z]).*([A-Z])/.test(nodeName) || nodeName.includes('-')
+function ignoreNode(options: Options) {
+  return /([A-Z]).*([A-Z])/.test(options.nodeName) || options.nodeName.includes('-')
 }
 
 // use inside eslint flat configs

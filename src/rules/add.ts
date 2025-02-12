@@ -29,7 +29,6 @@ export default function createRule ({
 
       return context.sourceCode.parserServices.defineTemplateBodyVisitor({
         VElement (node: AST.VElement) {
-          const ignore = ignoreNode.bind(undefined, node.rawName)
           const isRoot = node.parent.parent?.type === 'VDocumentFragment'
           const attributeNames = getAttributeNames(node)
           const hasDataTestIdAttribute = attributeNames.intersection(searchingAttributes).size > 0
@@ -45,6 +44,7 @@ export default function createRule ({
           }
 
           const options: DataTestidOptions[] = classNames.map(className => ({
+            nodeName: node.rawName,
             filepath: context.filename,
             filename,
             isRoot,
@@ -54,13 +54,14 @@ export default function createRule ({
 
           if (!options.length) {
             options.push({
+              nodeName: node.rawName,
               filepath: context.filename,
               filename,
               isRoot
             })
           }
 
-          const filteredOptions = options.filter(option => !ignore(option))
+          const filteredOptions = options.filter(option => !ignoreNode(option))
 
           const dataTestids = filteredOptions
             .map(buildDataTestid)
