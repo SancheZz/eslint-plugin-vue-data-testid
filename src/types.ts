@@ -1,4 +1,5 @@
 export type buildDataTestid = (options: {
+  filepath: string;
   filename: string;
   isRoot: boolean;
   className: string;

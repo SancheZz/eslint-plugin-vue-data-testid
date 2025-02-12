@@ -4,6 +4,8 @@ An `eslint` plugin for checking accessibility rules from within `.vue` files. Ad
 
 ## 💻 Installation
 
+Plugin requires `eslint@9`.
+
 ### install dependency
 
 `pnpm add -D @yasanchezz/eslint-plugin-vue-data-testid`

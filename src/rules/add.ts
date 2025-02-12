@@ -48,6 +48,7 @@ export default function createRule ({
           ) {
             const dataTestids = classNames
               .map(className => buildDataTestid({
+                filepath: context.filename,
                 filename,
                 isRoot,
                 className,

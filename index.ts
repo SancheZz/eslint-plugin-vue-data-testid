@@ -14,7 +14,6 @@ export default function createPlugin (options: PluginOptions) {
     },
     rules,
     configs: {},
-    processors: {},
   }
 
   Object.assign(plugin.configs, {
