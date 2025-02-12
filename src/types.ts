@@ -1,12 +1,17 @@
-export type buildDataTestid = (options: {
+export type DataTestidOptions = {
   filepath: string;
   filename: string;
   isRoot: boolean;
-  className: string;
-  classNames: string[];
-}) => string | undefined
+  className?: string;
+  classNames?: string[];
+}
 
-export type IgnoreNode = (nodeName: string) => boolean
+export type buildDataTestid = (options: DataTestidOptions) => string | undefined
+
+export type IgnoreNode = (
+  nodeName: string,
+  options: DataTestidOptions
+) => boolean
 
 export type PluginOptions = {
   buildDataTestid: buildDataTestid;
