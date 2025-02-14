@@ -4,7 +4,7 @@ import type { DataTestidOptions, PluginOptions } from '../types'
 import * as path from 'node:path'
 import { getAttributeNames, getAttributeValue } from '../utils/index.ts'
 
-const searchingAttributes = new Set(['data-testid', 'dataTestid'])
+const searchedAttributeNames = new Set(['data-testid', 'dataTestid'])
 
 export default function createRule ({
   buildDataTestid,
@@ -31,7 +31,7 @@ export default function createRule ({
         VElement (node: AST.VElement) {
           const isRoot = node.parent.parent?.type === 'VDocumentFragment'
           const attributeNames = getAttributeNames(node)
-          const hasDataTestIdAttribute = attributeNames.intersection(searchingAttributes).size > 0
+          const hasDataTestIdAttribute = attributeNames.intersection(searchedAttributeNames).size > 0
           const classNames = Iterator.from(getAttributeValue(node, 'class'))
             .flatMap(className => className.split(' '))
             .toArray()

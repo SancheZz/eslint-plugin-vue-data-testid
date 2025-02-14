@@ -1,10 +1,11 @@
-import { add } from './src/rules/index.ts'
+import { add, unique } from './src/rules/index.ts'
 import { PluginOptions } from './src/types.ts'
 import packagejson from './package.json' with { type: 'json' }
 
 export default function createPlugin (options: PluginOptions) {
   const rules = {
     add: add(options),
+    unique,
   }
 
   const plugin = {
@@ -13,19 +14,22 @@ export default function createPlugin (options: PluginOptions) {
       version: packagejson.version
     },
     rules,
-    configs: {},
+    configs: {
+      get recommended () {
+        return recommended
+      }
+    },
   }
 
-  Object.assign(plugin.configs, {
-    recommended: [{
-      plugins: {
-        'vue-data-testid': plugin,
-      },
-      rules: {
-        'vue-data-testid/add': 'error'
-      }
-    }],
-  })
+  const recommended = [{
+    plugins: {
+      'vue-data-testid': plugin,
+    },
+    rules: {
+      'vue-data-testid/add': 'error',
+      'vue-data-testid/unique': 'warn',
+    }
+  }]
 
   return plugin
 }

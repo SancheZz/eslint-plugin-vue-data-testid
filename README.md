@@ -65,3 +65,7 @@ export default [
   }).configs.recommended
 ]
 ```
+
+### Rules
+`vue-data-testid/add` - if data-testis is not present, it should be added
+`vue-data-testid/unique` - attribute should be unique
