@@ -25,8 +25,12 @@ type Options = {
   classNames?: string[];
 }
 
+// undefined value does not trigger valiation rule
+// string value enforces eslint rule behavior
+type ReturnValueTestId = string | undefined
+
 // e.g. convert filename and BEM class into data-testid
-function buildDataTestid(options: Options) {
+function buildDataTestid(options: Options): ReturnValueTestId {
   const filename = options.filename.replace('.vue', '')
   const [first, second] = [options.className?.at(0), options.className?.slice(1)]
 
@@ -67,5 +71,5 @@ export default [
 ```
 
 ### Rules
-`vue-data-testid/add` - if data-testis is not present, it should be added
-`vue-data-testid/unique` - attribute should be unique
+- `vue-data-testid/add` - if data-testis is not present, it should be added
+- `vue-data-testid/unique` - attribute should be unique
