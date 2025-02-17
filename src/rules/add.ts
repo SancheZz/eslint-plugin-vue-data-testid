@@ -1,15 +1,16 @@
 import type { Rule } from 'eslint'
 import type { AST } from 'vue-eslint-parser'
 import type { DataTestidOptions, PluginOptions } from '../types'
+import { getAttributeNames, getAttributeValue, calculateAttributeNames } from '../utils/index.ts'
 import * as path from 'node:path'
-import { getAttributeNames, getAttributeValue } from '../utils/index.ts'
-
-const searchedAttributeNames = new Set(['data-testid', 'dataTestid'])
 
 export default function createRule ({
+  attributeName = 'data-testid',
   buildDataTestid,
   ignoreNode = () => false,
 }: PluginOptions): Rule.RuleModule {
+  const searchedAttributeNames = calculateAttributeNames(attributeName)
+
   return {
     meta: {
       docs: { description: 'should add data-testid attribute' },
@@ -49,7 +50,7 @@ export default function createRule ({
             filename,
             isRoot,
             className,
-            classNames
+            classNames,
           }))
 
           if (!options.length) {
@@ -57,7 +58,7 @@ export default function createRule ({
               nodeName: node.rawName,
               filepath: context.filename,
               filename,
-              isRoot
+              isRoot,
             })
           }
 
@@ -75,7 +76,7 @@ export default function createRule ({
           }
 
           function fix (dataTestid: string, fixer: Rule.RuleFixer) {
-            const message = ` data-testid="${dataTestid}"`
+            const message = ` ${attributeName}="${dataTestid}"`
             return fixer.insertTextAfterRange(
               [startRange, startRange + nameLength + 1],
               message
@@ -84,7 +85,7 @@ export default function createRule ({
 
           context.report({
             node: node as any,
-            message: 'should add data-testid for further behavior testing',
+            message: `should add ${attributeName} for further behavior testing`,
             fix: fix.bind(undefined, firstDataTestid),
             suggest: dataTestids.map(dataTestid => ({
               data: { attribute: dataTestid },

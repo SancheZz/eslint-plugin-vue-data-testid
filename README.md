@@ -64,12 +64,27 @@ export default [
   },
   
   ...vueDataTestid({
-    buildDataTestid,
-    ignoreNode,
+    attributeName: 'data-testid', // default data-testid (optional props)
+    buildDataTestid, // convert AST attributes to data-testid
+    ignoreNode, // check ignored nodes
   }).configs.recommended
 ]
 ```
 
 ### Rules
-- `vue-data-testid/add` - if data-testis is not present, it should be added
+- `vue-data-testid/add` - if data-testid is missing, it should be added
 - `vue-data-testid/unique` - attribute should be unique
+
+### example converted node
+before
+```vue
+<div class="hello-world"></div>
+```
+
+after
+```vue
+<div
+  data-testid="App__HelloWorld"
+  class="hello-world"
+></div>
+```

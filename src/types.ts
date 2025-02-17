@@ -11,6 +11,7 @@ export type BuildDataTestid = (options: DataTestidOptions) => string | undefined
 export type IgnoreNode = (options: DataTestidOptions) => boolean
 
 export type PluginOptions = {
+  attributeName?: string;
   buildDataTestid: BuildDataTestid;
   ignoreNode?: IgnoreNode
 }

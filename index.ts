@@ -5,7 +5,7 @@ import packagejson from './package.json' with { type: 'json' }
 export default function createPlugin (options: PluginOptions) {
   const rules = {
     add: add(options),
-    unique,
+    unique: unique(options),
   }
 
   const plugin = {

@@ -22,18 +22,18 @@
   "author": "",
   "license": "ISC",
   "peerDependencies": {
-    "eslint": "^9.20.0"
-  },
-  "devDependencies": {
-    "@types/node": "^22.13.1",
-    "@typescript-eslint/utils": "^8.24.0",
-    "jiti": "^2.4.2",
-    "typescript": "^5.7.3",
+    "eslint": "^9.20.0",
     "vue-eslint-parser": "^9.4.3"
   },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "@typescript-eslint/utils": "^8.24.0",
+    "jiti": "^2.4.2",
+    "neostandard": "^0.12.1",
+    "typescript": "^5.7.3"
+  },
   "dependencies": {
-    "globals": "^15.14.0",
-    "neostandard": "^0.12.1"
+    "globals": "^15.15.0"
   },
   "engines": {
     "node": ">= 22.0.0",
