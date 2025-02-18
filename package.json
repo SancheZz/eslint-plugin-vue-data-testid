@@ -15,25 +15,22 @@
   },
   "scripts": {
     "lint": "eslint -c eslint.config.js",
-    "build": "tsc -p tsconfig.json",
-    "build-prod": "pnpm lint && pnpm build"
+    "build": "rimraf dist && tsc -p tsconfig.json"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "peerDependencies": {
+    "@typescript-eslint/utils": "^8.24.0",
     "eslint": "^9.20.0",
     "vue-eslint-parser": "^9.4.3"
   },
   "devDependencies": {
     "@types/node": "^22.13.4",
-    "@typescript-eslint/utils": "^8.24.0",
     "jiti": "^2.4.2",
     "neostandard": "^0.12.1",
+    "rimraf": "^6.0.1",
     "typescript": "^5.7.3"
-  },
-  "dependencies": {
-    "globals": "^15.15.0"
   },
   "engines": {
     "node": ">= 22.0.0",
