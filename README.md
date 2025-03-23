@@ -52,7 +52,7 @@ function ignoreNode(options: Options) {
 }
 
 // use inside eslint flat configs
-export default [
+export default defineConfigWithVueTs(
   {
     name: 'app/files-to-lint',
     files: ['**/*.{ts,mts,tsx,vue}'],
@@ -62,20 +62,23 @@ export default [
     name: 'app/files-to-ignore',
     ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
   },
+
+  ...pluginVue.configs['flat/recommended'],
+  vueTsConfigs.recommended,
   
   ...vueDataTestid({
     attributeName: 'data-testid', // default data-testid (optional props)
     buildDataTestid, // convert AST attributes to data-testid
     ignoreNode, // check ignored nodes
   }).configs.recommended
-]
+)
 ```
 
 ### Rules
 - `vue-data-testid/add` - if data-testid is missing, it should be added
 - `vue-data-testid/unique` - attribute should be unique
 
-### example converted node
+### Example converted node
 before
 ```vue
 <div class="hello-world"></div>

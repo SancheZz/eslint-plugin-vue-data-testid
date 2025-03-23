@@ -17,23 +17,32 @@
     "lint": "eslint -c eslint.config.js",
     "build": "rimraf dist && tsc -p tsconfig.json"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "eslint",
+    "data-testid",
+    "vue"
+  ],
+  "author": "Aleksandr Kazimir",
   "license": "ISC",
   "peerDependencies": {
-    "@typescript-eslint/utils": "^8.24.0",
     "eslint": "^9.20.0",
     "vue-eslint-parser": "^9.4.3"
   },
   "devDependencies": {
-    "@types/node": "^22.13.4",
+    "@types/node": "^22.13.11",
+    "@typescript-eslint/utils": "^8.27.0",
     "jiti": "^2.4.2",
     "neostandard": "^0.12.1",
     "rimraf": "^6.0.1",
-    "typescript": "^5.7.3"
+    "typescript": "^5.8.2"
   },
   "engines": {
     "node": ">= 22.0.0",
     "pnpm": ">= 10"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SancheZz/eslint-plugin-vue-data-testid.git"
+  },
+  "homepage": "https://github.com/SancheZz/eslint-plugin-vue-data-testid/blob/main/README.md"
 }
