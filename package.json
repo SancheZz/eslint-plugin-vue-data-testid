@@ -10,7 +10,7 @@
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/types.d.ts"
     }
   },
   "scripts": {
@@ -29,12 +29,12 @@
     "vue-eslint-parser": "^9.4.3"
   },
   "devDependencies": {
-    "@types/node": "^22.13.11",
-    "@typescript-eslint/utils": "^8.27.0",
+    "@types/node": "^22.15.2",
+    "@typescript-eslint/utils": "^8.31.0",
     "jiti": "^2.4.2",
     "neostandard": "^0.12.1",
     "rimraf": "^6.0.1",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   },
   "engines": {
     "node": ">= 22.0.0",

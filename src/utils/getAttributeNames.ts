@@ -9,6 +9,7 @@ export default function getAttributeNames (node: AST.VElement) {
           : undefined
         : attribute.key.name
     )
+    .filter(attributeName => attributeName != null)
 
   return new Set(attributeNames)
 }
